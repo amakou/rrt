@@ -1,0 +1,17 @@
+<package>
+  <description brief="rrt">
+
+     rrt
+
+  </description>
+  <author>ubuntu</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/rrt</url>
+  <depend package="roscpp"/>
+  <depend package="nav_msgs"/>
+  <depend package="tf"/>
+  <depend package="eigen"/>
+</package>
+
+
