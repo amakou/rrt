@@ -10,20 +10,12 @@
 #include <fstream>
 #include "cmath" // The cmath(complex math) header file in C++
 
-//#define SCPPNT_USE_REGIONS //for using partial information of matrix
 #define SCPPNT_NO_DIR_PREFIX // this part is necessary to use header file properly
-//see the structure of head file
-
-// #include "../LineExt Include/SCPPNT/cmat.h"
-// #include "../LineExt Include/SCPPNT/transv.h" //for using transpose function
-// #include "../LineExt Include/jama125/jama_svd.h"
 
 #include "LRFModel.h"
 #include "URB_Define.h"
 
 using namespace std;
-// using namespace SCPPNT;
-// using namespace JAMA;
 
 class Line_Param_Extract
 {
@@ -49,24 +41,23 @@ public:
 	
 	void Set_Sensor_Model(CLRFModel sensor){ m_sensor = sensor; }
 	
-	void Set_Robot_Position(double* _robot_position)
+	void setRobotPosition(CURB_Vector_3D robotState, double robotAngle)
 	{
-		for(int i=0; i<=1; i++)
-			robot_position(i,0) = _robot_position[i];
-		
-		robot_position(2,0) = deg2rad(_robot_position[2]);
+		robot_position(0,0) = robotState.x;
+		robot_position(1,0) = robotState.y;
+		robot_position(2,0) = deg2rad(robotAngle);
 	}
-	
 	
 	void Set_Err_Thres(double _err_thres){ err_thres = _err_thres;}
 	
-	void Set_Range(double* _range)
+	void setRange(vector<float> _range)
 	{
 		range = new double[m_sensor.GetNumRay()];
-		
-		for(int i=0;i<m_sensor.GetNumRay();i++)	range[i] = _range[i];
+
+		for(int i=0; i<m_sensor.GetNumRay(); i++)
+			range[i] = _range[i];
 	}
-	
+
 	void Set_Db_Map(MatrixXd &_db_map_info){ db_map_info = _db_map_info; }
 	
 	void Extract_Line();

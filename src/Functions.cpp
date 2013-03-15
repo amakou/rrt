@@ -2,33 +2,24 @@
 
 VectorXd linspace(double d1, double d2, double n)
 {
-	int nF, i;
 	double test;
-	
 	VectorXd y;
+	int nF = floor(n);
 	
-	nF = floor(n);
-	
-	if( nF>0 )
-	{
+	if( nF > 0 ) {
 		y.resize(nF);
 		
-		for (i = 0; i<=nF-2; i++)
-		{
+		for (int i = 0; i<=nF-2; i++) {
 			test = d1+i*(d2-d1)/(floor(n)-1);
 			y(i) = test;
 		}
-		
 		y(nF-1) = d2;
-		return y;
-	}
-	else
-	{
+
+	} else {
 		y.resize(1);
 		y << d2;
-		
-		return y;
 	}
+	return y;
 }
 
 

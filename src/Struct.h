@@ -13,31 +13,6 @@ using Eigen::VectorXd;
 
 using namespace std;
 
-// World Structure
-typedef struct world {
-	// iNumObstacles ; number of obstacles
-	int iNumObstacles;
-
-	// vecNEcorner : NE corner, vecSWcorner : SW corner
-	Vector3d vecNEcorner, vecSWcorner;
-
-	// vecCN : Center of x direction, vecCE : center of y direction
-	// vecRadius : radius of circle,  vecZL : bottom of building, vecZH; height of building
-	VectorXd vecCN, vecCE, vecRadius, vecZL, vecZH;
-} world_t;
-
-
-typedef struct worldRect {
-	// iNumObstacles ; number of obstacles
-	int iNumObstacles;
-	
-	// vecNEcorner : NE corner, vecSWcorner : SW corner
-	Vector3d vecNEcorner, vecSWcorner;
-
-	VectorXd vecCN, vecCE, vecHorizontal, vecVertical, vecZ, vecRot;
-} worldRect_t;
-
-
 typedef struct worldLine {
 	// iNumObstacles ; number of obstacles
 	int iNumObstacles;
@@ -47,7 +22,6 @@ typedef struct worldLine {
 	
 	vector<CURB_Segment> lineSeg;
 } worldLine_t;
-
 
 // Setting Properties
 typedef struct setting {
@@ -59,7 +33,6 @@ typedef struct setting {
 	// INC : Increment of d			Ind : Indicator
 	double L, SZR, SZH, d, ds, kappa, INC, Ind;
 } setting_t;
-
 
 // Sigma Structure
 typedef struct sigma {

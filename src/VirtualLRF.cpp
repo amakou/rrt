@@ -61,7 +61,6 @@ void CVirtualLRF::Update_Sensor_Point(CURB_Vector_3D &robotPos,worldLine_t &line
 	{
 		tmpX = cos(ray_angle)*cos(sensor_angle);
 		tmpY = sin(ray_angle);
-		//tmpZ = cos(ray_angle)*sin(sensor_angle);
 		
 		CURB_Vector_2D tmpVec(tmpX,tmpY);
 		tmpVec = tmpVec*(m_maxRange/tmpVec.norm());
@@ -123,7 +122,7 @@ void CVirtualLRF::Update_Sensor_Point(CURB_Vector_3D &robotPos,worldLine_t &line
 	
 	for (i=0;i<m_numRay;i++)
 	{
-		noise = m_noise_st_dev*(float)normal_random(0,1);	// rand ÇÔ¼ö ¼öÁ¤
+		noise = m_noise_st_dev*(float)normal_random(0,1);	// rand ï¿½Ô¼ï¿½ ï¿½ï¿½ï¿½ï¿½
 		CURB_ihPoint_2D tempRay(noise*cos(ray_angle),noise*sin(ray_angle));
 		CURB_ihPoint_2D temp_noise(tR1.DotProduct(tempRay),tR2.DotProduct(tempRay));
 		ih_Noise.push_back(temp_noise);
@@ -184,12 +183,11 @@ vector<CURB_ihPoint_2D> CVirtualLRF::Range2Point(vector<float> &data,CURB_Vector
 	CURB_Vector_3D R2(sin(deg2rad(robotPos.z+m_angPos.x)),  cos(deg2rad(robotPos.z+m_angPos.x)),robotPos.y+m_pos.y);
 	CURB_Vector_3D R3(0,0,1);
 	
-	int i=0,j=0;
 	CURB_ihPoint_2D temp_ray_point;
 	vector<CURB_ihPoint_2D> ih_point;
 	
 	float ray_angle = -m_viewField/2;;
-	for (i=0; i<m_numRay; i++,ray_angle += m_resolution)
+	for (int i=0; i<m_numRay; i++,ray_angle += m_resolution)
 	{
 		CURB_Vector_3D tempRay(data[i-1]*cos(ray_angle),data[i-1]*sin(ray_angle),1);
 		temp_ray_point = CURB_hPoint_2D(R1.DotProduct(tempRay),R2.DotProduct(tempRay),R3.DotProduct(tempRay)).h2ih_2D();

@@ -263,37 +263,3 @@ MatrixXd LmaxCalculation1(int n, VectorXd vecL, MatrixXd matDkappa, VectorXd vec
 	
 	return matDkappa;
 }
-
-
-
-VectorXd MaxLength_C1CBC(MatrixXd matPath)
-{
-	VectorXd vecL, vecMax;
-	
-	int n, i;
-	
-	
-	// Iteration number
-	n = matPath.rows();
-	
-	// Length Calculation
-	vecL.resize(n-1);
-	
-	for (i=0; i<n-1; i++)
-		vecL(i) = (matPath.row(i+1)-matPath.row(i)).norm();
-	
-	// Maximum Length Calculation
-	vecMax.resize(n-2);
-		
-	for (i=0; i<n-2; i++)
-	{
-		if (i==0)
-			vecMax(i) = min(vecL(i), 0.5*vecL(i+1));
-		else if (i==n-1)
-			vecMax(i) = min(0.5*vecL(i), vecL(i+1));
-		else
-			vecMax(i) = min(0.5*vecL(i), 0.5*vecL(i+1));
-	}
-	
-	return vecMax;
-}

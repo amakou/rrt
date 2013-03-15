@@ -7,6 +7,4 @@ info_t MaxLengthCalculationNormal(MatrixXd matPathFinal, setting_t P, double dMa
 
 MatrixXd LmaxCalculation1(int n, VectorXd vecL, MatrixXd matDkappa, VectorXd vecLr, VectorXd vecLd);
 
-VectorXd MaxLength_C1CBC(MatrixXd matPath);
-
 #endif /* MAXLENGTHCALCULATIONNORMAL_H_ */

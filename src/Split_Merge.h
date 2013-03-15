@@ -32,7 +32,6 @@ private:
 	MatrixXd Projection(MatrixXd &vec_1,MatrixXd &line_point_1,MatrixXd &line_point_2);
 
 public:
-	Split_Merge();
 	Split_Merge(MatrixXd &_sensor_points, double _err_thres);
 	
 	void Split_And_Merge();

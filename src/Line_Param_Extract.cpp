@@ -58,15 +58,13 @@ void Line_Param_Extract::Sensor_Projection()
 	int numPoints = m_sensor.GetNumRay();
 	float max_range = m_sensor.GetMaxRange();
 	float min_range = m_sensor.GetMinRange();
-	float viewField = m_sensor.GetViewField();
+
 	float resolution = m_sensor.GetResolution();
 	float sensor_angle = m_sensor.GetSensorAngPos().y; // pitch
 	float robot_height = m_sensor.GetSensorPos().z;
 	float robotX = float(robot_position(0,0));
 	float robotY = float(robot_position(1,0));
 	float robotTheta = float(robot_position(2,0)) - M_PI/2;
-
-	float tmpX,tmpY;
 	
 	MatrixXd temp(2,numPoints), tempZ(1,numPoints), angMat(2,numPoints);
 	

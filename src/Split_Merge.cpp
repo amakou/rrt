@@ -10,33 +10,7 @@
 #include "Line_Param_Extract.h"
 #include <Eigen/SVD>
 
-
 using namespace Eigen;
-
-// sick
-/*Split_Merge::Split_Merge()
-{
-	split_err_thres = 0.05f; // 3.0
-	merge_err_thres = 0;
-	point_thres = 30; // 3
-	sensor_points.resize(0,0);
-}
-
-Split_Merge::Split_Merge(MatrixXd &_sensor_points, double _err_thres)
-{
-	point_thres = 20;		// 2
-	split_err_thres = 0.05f;	// 1.0
-	merge_err_thres = _err_thres;
-	sensor_points = _sensor_points;
-}*/
-
-Split_Merge::Split_Merge()
-{
-	split_err_thres = 0.05f; // 3.0
-	merge_err_thres = 0;
-	point_thres = 10; // 3
-	sensor_points.resize(0,0);
-}
 
 // used in RRT code
 Split_Merge::Split_Merge(MatrixXd &_sensor_points, double _err_thres)
@@ -322,7 +296,6 @@ void Split_Merge::Merge()
 
 MatrixXd Split_Merge::Extract_Line_Param(MatrixXd &points)
 {
-	int i, j;
 	MatrixXd line_param(6,2);
 	int num = points.cols();
 	
@@ -333,7 +306,7 @@ MatrixXd Split_Merge::Extract_Line_Param(MatrixXd &points)
 	MatrixXd p_2(2,1);
 	MatrixXd line(3,1);
 
-	for(i=0; i<=num-1; i++)
+	for(int i=0; i<=num-1; i++)
 	{
 		A(i,0) = points(0,i);
 		A(i,1) = 1;
@@ -378,7 +351,7 @@ MatrixXd Split_Merge::Extract_Line_Param(MatrixXd &points)
 	}
 	else
 	{
-		for(i=0; i<=num-1; i++)
+		for(int i=0; i<=num-1; i++)
 		{
 			A(i,0) = points(1,i);
 			A(i,1) = 1;
@@ -425,7 +398,7 @@ MatrixXd Split_Merge::Extract_Line_Param(MatrixXd &points)
 
 	double error = 0;
 	
-	for(i=0; i<num+1-1; i++)
+	for(int i=0; i<num+1-1; i++)
 	{
 		MatrixXd p(2,1);
 		MatrixXd proj_point;
@@ -445,7 +418,7 @@ MatrixXd Split_Merge::Extract_Line_Param(MatrixXd &points)
 	
 	double s = sqrt( pow(line(0,0),2) + pow(line(1,0),2) + pow(line(2,0),2) );
 	
-	for(i=0; i<=2; i++)
+	for(int i=0; i<=2; i++)
 		line(i,0) = line(i,0) / s;
 
 	double sample_var = error / (num-1);
@@ -460,7 +433,7 @@ MatrixXd Split_Merge::Extract_Line_Param(MatrixXd &points)
 	_line(4,0) = roh_std_dev;
 	_line(5,0) = psi_std_dev;
 	
-	for(i=0; i<6; i++)
+	for(int i=0; i<6; i++)
 		line_param(i,0) = _line(i,0);
 	
 	line_param(0,1) = first_point(0,0);
