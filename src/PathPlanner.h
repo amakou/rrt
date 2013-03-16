@@ -78,8 +78,8 @@ public:
 		PathNode(vecNode(0), vecNode(1), vecNode(2), (vecNode(3)==1), vecNode(4),
 		         vecNode(5), vecNode(6), vecNode(7), -1, NULL);
 	}
-	PathNode (float x, float y, float z) { setPosition(x, y, z); init();}
-	PathNode (CURB_Point_3D p) { setPosition(p); init();}
+	PathNode (float x, float y, float z) { setPosition(x, y, z); }
+	PathNode (CURB_Point_3D p) { setPosition(p); }
 
 	void setValue(float x, float y, float z, bool isLastNode, double cost, double extLength, double abs, int parentIndex, int index, PathNode *pn) {
 		setPosition(x, y, z); 	m_isLastNode = isLastNode; 	m_cost = cost; 	m_extLength = extLength; 	m_abs = abs;

@@ -3,7 +3,7 @@
 // find the lowest ost path o the end node
 MatrixXd FindMinimumPath(MatrixXd matTree, VectorXd vecEndNode)
 {
-	int minVecIdx, iParentNodeIdx;
+	int minVecIdx, iParentNodeIdx, iParentNode;
 	double minVecVal;
 	MatrixXd matConnectingNodes, matPath;
 
